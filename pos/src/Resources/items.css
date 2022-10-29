@@ -1,0 +1,21 @@
+.item {
+  box-shadow: 0 0 3px rgb(211, 208, 208);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.item .name {
+  color: tomato;
+  font-size: 20px;
+}
+
+.item .price {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.699);
+  font-size: 20px;
+}
+.item button {
+  margin-top: 15px;
+  background-color: rgb(102, 154, 102) !important;
+  color: white !important;
+}
