@@ -59,6 +59,18 @@ function Items() {
   useEffect(() => {
     getAllItems();
   }, []);
+  const onFinish = (values) => {
+    dispatch({ type: "showLoading" });
+    axios
+      .post("/api/items/add-item", values)
+      .then((response) => {
+        dispatch({ type: "hideLoading" });
+      })
+      .catch((error) => {
+        dispatch({ type: "hideLoading" });
+        console.log(error);
+      });
+  };
   return (
     <DefaultLayout>
       <div className="d-flex justify-content-between">
@@ -74,7 +86,7 @@ function Items() {
         title="Add New Item"
         footer={false}
       >
-        <Form layout="vertical">
+        <Form layout="vertical" onFinish={onFinish}>
           <Form.Item name="name" label="Name">
             <Input />
           </Form.Item>
