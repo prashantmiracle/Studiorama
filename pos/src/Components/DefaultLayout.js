@@ -18,13 +18,18 @@ const { Header, Sider, Content } = Layout;
 const DefaultLayout = (props) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
-  const { cartItems } = useSelector((state) => state.rootReducer);
+  const { cartItems, loading } = useSelector((state) => state.rootReducer);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   return (
     <Layout>
+      {loading && (
+        <div className="spinner">
+          <div class="spinner-border" role="status"></div>
+        </div>
+      )}
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h4>STUDIO RAMA</h4>

@@ -10,6 +10,15 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload],
       };
+
+    case "deleteFromCart":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (item) => item._id !== action.payload._id
+        ),
+      };
+
     case "updateCart":
       return {
         ...state,
@@ -18,6 +27,16 @@ export const rootReducer = (state = initialState, action) => {
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
+      };
+    case "showLoading":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "hideLoading":
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
