@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Modal, Select, Table } from "antd";
+import { Button, Form, Input, message, Modal, Select, Table } from "antd";
 
 function Items() {
   const [ItemsData, setItemsdata] = useState([]);
@@ -65,9 +65,13 @@ function Items() {
       .post("/api/items/add-item", values)
       .then((response) => {
         dispatch({ type: "hideLoading" });
+        message.success("Item Added Successfully");
+        setAddEditModalVisibility(false);
+        getAllItems();
       })
       .catch((error) => {
         dispatch({ type: "hideLoading" });
+        message.error("Something went wrong");
         console.log(error);
       });
   };
